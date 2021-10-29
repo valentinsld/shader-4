@@ -22,22 +22,28 @@ class ParticularWind {
     const count = 1948
 
     const positions = new Float32Array(count * 3)
+    const random = new Float32Array(count * 3)
     const elevation = new Float32Array(count)
     let lasElevation = 0
 
     for (let i = 0; i < count; i++) {
       const i3 = 3 * i
+
       positions[i3] = 0 + this.params.width * Math.cos(i * 0.1)
       positions[i3 + 1] = this.params.width * Math.sin(i * 0.1)
       positions[i3 + 2] = 0
 
-      elevation[i] = i * 0.003
+      random[i3] = (Math.random() - 0.5) * 0.1
+      random[i3 + 1] = (Math.random() - 0.5) * 0.1
+      random[i3 + 2] = (Math.random() - 0.5) * 0.1
+
+      elevation[i] = i * 0.005
     }
-    console.log(elevation)
     lasElevation = elevation[count - 1]
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
     particlesGeometry.setAttribute('aElevation', new THREE.BufferAttribute(elevation, 1))
+    particlesGeometry.setAttribute('aRandom', new THREE.BufferAttribute(random, 3))
 
     //
     // Material
@@ -53,6 +59,7 @@ class ParticularWind {
         uTime: { value: 0 },
         uSize: { value: 50 * this.renderer.getPixelRatio() },
         uLastElevation: { value: lasElevation },
+        uColor: { value: new THREE.Color('#00ccff') },
       },
     })
 

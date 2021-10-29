@@ -1,4 +1,5 @@
 uniform float uLastElevation;
+uniform vec3 uColor;
 
 varying float vElevation;
 
@@ -9,7 +10,8 @@ void main()
   strength *= 2.0;
   strength = 1.0 - strength;
 
-  float alpha = 1.0 - smoothstep(uLastElevation * 0.4, uLastElevation, vElevation);
+  float alpha = 1.0 - smoothstep(uLastElevation * 0.2, uLastElevation, vElevation);
 
-  gl_FragColor = vec4(vec3(strength), alpha);
+  gl_FragColor.rgb = uColor * strength;
+  gl_FragColor.a = alpha;
 }

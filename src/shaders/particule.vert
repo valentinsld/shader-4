@@ -3,6 +3,7 @@ uniform float uSize;
 uniform float uLastElevation;
 
 attribute float aElevation;
+attribute float aRandom;
 
 varying float vElevation;
 
@@ -11,6 +12,8 @@ void main()
   // Position
   vec4 modelPosition = modelMatrix * vec4(position, 1.0);
   modelPosition.z += mod(aElevation + uTime, uLastElevation);
+  modelPosition += aRandom;
+
   vec4 viewPosition = viewMatrix * modelPosition;
   vec4 projectedPosition = projectionMatrix * viewPosition;
   gl_Position = projectedPosition;
