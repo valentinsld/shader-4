@@ -22,6 +22,7 @@
     "react/jsx-props-no-spreading": [2, {
       "custom": "ignore"
     }],
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "class-methods-use-this": "off"
   }
 }
