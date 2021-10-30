@@ -24,7 +24,7 @@ class App {
     this.initRenderer()
     this.resize()
 
-    // this.initAxis()
+    this.initAxis()
     this.initParticules()
 
     this.clock = new THREE.Clock()
@@ -34,7 +34,7 @@ class App {
   initCamera() {
     // Base camera
     this.camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 100)
-    this.camera.position.set(0, 0, -0.1)
+    this.camera.position.set(2.9, 2, 2.9)
     this.scene.add(this.camera)
 
     // Controls
@@ -61,18 +61,6 @@ class App {
       renderer: this.renderer,
       gui: this.gui,
     })
-
-    // this.particules2 = new ParticularWind({
-    //   scene: this.scene,
-    //   renderer: this.renderer,
-    //   gui: this.gui,
-    //   params: {
-    //     widthCircle: 1.5,
-    //     color1: '#dcb504',
-    //     color2: '#c8321f',
-    //   },
-    //   speed: 0.5,
-    // })
   }
 
   //
@@ -110,7 +98,6 @@ class App {
     this.controls.update()
 
     this.particules.update(elapsedTime)
-    // this.particules2.update(elapsedTime)
 
     // Render
     this.renderer.render(this.scene, this.camera)
