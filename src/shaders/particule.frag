@@ -11,7 +11,7 @@ void main()
   strength *= 2.0;
   strength = 1.0 - strength;
 
-  float alpha = 1.0 - smoothstep(uLastElevation * 0.2, uLastElevation, vElevation);
+  float alpha = 1.0 - smoothstep(uLastElevation * 0.1, uLastElevation, vElevation);
 
   gl_FragColor.rgb = vColor * strength;
   gl_FragColor.a = alpha;
