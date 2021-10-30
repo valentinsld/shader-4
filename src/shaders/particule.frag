@@ -2,6 +2,7 @@ uniform float uLastElevation;
 uniform vec3 uColor;
 
 varying float vElevation;
+varying vec3 vColor;
 
 void main()
 {
@@ -12,6 +13,6 @@ void main()
 
   float alpha = 1.0 - smoothstep(uLastElevation * 0.2, uLastElevation, vElevation);
 
-  gl_FragColor.rgb = uColor * strength;
+  gl_FragColor.rgb = vColor * strength;
   gl_FragColor.a = alpha;
 }

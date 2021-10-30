@@ -9,6 +9,8 @@ class ParticularWind {
 
     this.params = {
       width: 0.5,
+      color1: new THREE.Color('#00ccff'),
+      color2: new THREE.Color('#057dd5'),
     }
 
     this.init()
@@ -24,6 +26,7 @@ class ParticularWind {
     const positions = new Float32Array(count * 3)
     const random = new Float32Array(count * 3)
     const elevation = new Float32Array(count)
+    const color = new Float32Array(count * 3)
     let lasElevation = 0
 
     for (let i = 0; i < count; i++) {
@@ -37,13 +40,21 @@ class ParticularWind {
       random[i3 + 1] = (Math.random() - 0.5) * 0.1
       random[i3 + 2] = (Math.random() - 0.5) * 0.1
 
-      elevation[i] = i * 0.005
+      elevation[i] = i * 0.002
+
+      const particuleColor = new THREE.Color().lerpColors(
+        this.params.color1, this.params.color2, Math.random(),
+      )
+      color[i3] = particuleColor.r
+      color[i3 + 1] = particuleColor.g
+      color[i3 + 2] = particuleColor.b
     }
     lasElevation = elevation[count - 1]
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
     particlesGeometry.setAttribute('aElevation', new THREE.BufferAttribute(elevation, 1))
     particlesGeometry.setAttribute('aRandom', new THREE.BufferAttribute(random, 3))
+    particlesGeometry.setAttribute('aColor', new THREE.BufferAttribute(color, 3))
 
     //
     // Material
@@ -59,7 +70,6 @@ class ParticularWind {
         uTime: { value: 0 },
         uSize: { value: 50 * this.renderer.getPixelRatio() },
         uLastElevation: { value: lasElevation },
-        uColor: { value: new THREE.Color('#00ccff') },
       },
     })
 

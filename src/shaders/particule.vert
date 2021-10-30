@@ -3,9 +3,11 @@ uniform float uSize;
 uniform float uLastElevation;
 
 attribute float aElevation;
+attribute vec3 aColor;
 attribute float aRandom;
 
 varying float vElevation;
+varying vec3 vColor;
 
 void main()
 {
@@ -24,4 +26,5 @@ void main()
 
   // Varyings
   vElevation = modelPosition.z;
+  vColor = aColor;
 }
