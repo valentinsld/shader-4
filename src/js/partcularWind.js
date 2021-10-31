@@ -4,23 +4,37 @@ import vertexShader from '../shaders/particule.vert'
 import fragmentShader from '../shaders/particule.frag'
 
 const PARAMS = {
-  widthCircle: 0.5,
+  widthCircle: 0.6,
   sizeParticules: 42,
   color1: '#32b3dc', // #dcb504
   color2: '#2560b6', // #c8321f
+  powerRandom: 3.5,
+  radiusRandom: 0.2,
 }
 
 class ParticularWind {
-  constructor({ scene, renderer, gui, params = {}, senseRotation = +1, speed = 0.3 }) {
+  constructor({ scene, renderer, gui, params = {}, senseRotation = +1, speed = 0.65 }) {
     Object.assign(this, { scene, renderer, gui, senseRotation, speed })
 
-    this.count = 1948 * 2
+    this.count = 1948 * 3
     this.params = Object.assign(PARAMS, params)
 
-    this.init()
+    // this.initPlane()
+    this.initParticules()
   }
 
-  init() {
+  initPlane() {
+    const geometry = new THREE.PlaneGeometry(4, 4)
+    const material = new THREE.MeshBasicMaterial({
+      color: 'grey',
+    })
+
+    this.plane = new THREE.Mesh(geometry, material)
+    this.plane.rotation.x = Math.PI / -2
+    this.scene.add(this.plane)
+  }
+
+  initParticules() {
     //
     // geometry
     //
@@ -40,17 +54,17 @@ class ParticularWind {
     for (let i = 0; i < count; i++) {
       const i3 = 3 * i
 
-      positions[i3] = 0 + this.params.widthCircle * Math.cos(i * 0.1)
-      positions[i3 + 1] = this.params.widthCircle * Math.sin(i * 0.1)
-      positions[i3 + 2] = 0
+      positions[i3] = this.params.widthCircle * Math.cos(i * 0.013)
+      positions[i3 + 1] = -1
+      positions[i3 + 2] = this.params.widthCircle * Math.sin(i * 0.013)
 
-      randomPosition[i3] = (Math.random() - 0.5) * 0.35
-      randomPosition[i3 + 1] = (Math.random() - 0.5) * 0.35
-      randomPosition[i3 + 2] = (Math.random() - 0.5) * 0.35
+      randomPosition[i3] = this.getRandomWithPower()
+      randomPosition[i3 + 1] = this.getRandomWithPower()
+      randomPosition[i3 + 2] = this.getRandomWithPower()
 
       randomSize[i] = Math.max(Math.random() * 2, 0.3)
 
-      elevation[i] = i * 0.001
+      elevation[i] = i * 0.0015
 
       const particuleColor = new THREE.Color().lerpColors(
         color1, color2, Math.random(),
@@ -85,6 +99,7 @@ class ParticularWind {
     })
 
     this.mesh = new THREE.Points(particlesGeometry, particlesMaterial)
+    this.mesh.position.y += 0.5
     this.scene.add(this.mesh)
 
     this.initGUI()
@@ -92,7 +107,8 @@ class ParticularWind {
 
   initGUI() {
     const folder = this.gui.addFolder(`Particules ${Math.random()}`)
-    // TODO
+    folder.closed = false
+
     folder.add(this.params, 'sizeParticules', 10, 100).onChange((v) => {
       this.mesh.material.uniforms.uSize.value = v * this.renderer.getPixelRatio()
     })
@@ -121,9 +137,15 @@ class ParticularWind {
     this.mesh.geometry.setAttribute('aColor', new THREE.BufferAttribute(color, 3))
   }
 
+  getRandomWithPower(power = this.params.powerRandom, radius = this.params.radiusRandom) {
+    // eslint-disable-next-line no-restricted-properties
+    const r = Math.pow(Math.random(), power) * (Math.random() < 0.5 ? 1 : -1) * power * radius
+    return r
+  }
+
   update(t) {
     this.mesh.material.uniforms.uTime.value = t * this.speed * this.senseRotation
-    this.mesh.rotation.z = t * 0.5
+    this.mesh.rotation.y = t * 0.5
   }
 }
 

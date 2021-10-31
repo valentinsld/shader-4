@@ -2,7 +2,8 @@ import * as THREE from 'three'
 // eslint-disable-next-line import/extensions
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
-import ParticularWind from './partcularWind'
+import ParticularWind from './PartcularWind'
+import ReflactorPlane from './ReflactorPlane'
 
 class App {
   constructor() {
@@ -12,34 +13,42 @@ class App {
     // Canvas
     this.canvas = document.querySelector('canvas.webgl')
 
-    // Scene
-    this.scene = new THREE.Scene()
-
     this.sizes = {
       width: window.innerWidth,
       height: window.innerHeight,
     }
 
+    this.initScene()
     this.initCamera()
     this.initRenderer()
     this.resize()
 
     // this.initAxis()
     this.initParticules()
+    this.initPlane()
 
     this.clock = new THREE.Clock()
     this.initEvents()
   }
 
+  initScene() {
+    this.scene = new THREE.Scene()
+    this.scene.fog = new THREE.Fog('black', 0.1, 60)
+  }
+
   initCamera() {
     // Base camera
     this.camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 100)
-    this.camera.position.set(0, 0, -0.1)
+    this.camera.position.set(2.9, 2, 2.9)
     this.scene.add(this.camera)
 
     // Controls
     this.controls = new OrbitControls(this.camera, this.canvas)
-    this.controls.enableDamping = true
+    this.controls.maxPolarAngle = Math.PI * 0.495
+    this.controls.target.set(0, 0, 0)
+    this.controls.minDistance = 3
+    this.controls.maxDistance = 10
+    this.controls.update()
   }
 
   initRenderer() {
@@ -61,18 +70,14 @@ class App {
       renderer: this.renderer,
       gui: this.gui,
     })
+  }
 
-    // this.particules2 = new ParticularWind({
-    //   scene: this.scene,
-    //   renderer: this.renderer,
-    //   gui: this.gui,
-    //   params: {
-    //     widthCircle: 1.5,
-    //     color1: '#dcb504',
-    //     color2: '#c8321f',
-    //   },
-    //   speed: 0.5,
-    // })
+  initPlane() {
+    this.plane = new ReflactorPlane({
+      scene: this.scene,
+      renderer: this.renderer,
+      gui: this.gui,
+    })
   }
 
   //
@@ -110,7 +115,7 @@ class App {
     this.controls.update()
 
     this.particules.update(elapsedTime)
-    // this.particules2.update(elapsedTime)
+    this.plane.update(elapsedTime)
 
     // Render
     this.renderer.render(this.scene, this.camera)
