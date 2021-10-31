@@ -2,7 +2,7 @@ import * as THREE from 'three'
 // eslint-disable-next-line import/extensions
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
-import ParticularWind from './PartcularWind'
+import ParticularWind from './partcularWind'
 import ReflactorPlane from './ReflactorPlane'
 
 class App {
