@@ -111,7 +111,7 @@ void main()
   vec4 modelPosition = modelMatrix * vec4(position, 1.0);
   modelPosition.y += mod(aElevation + uTime, uLastElevation);
   modelPosition.xyz += aRandomPosition;
-  modelPosition.xyz += snoise(vec4(modelPosition.xyz, uTime)) * 0.2;
+  modelPosition.xyz += snoise(vec4(modelPosition.xyz, uTime * 0.5)) * 0.2;
 
   vec4 viewPosition = viewMatrix * modelPosition;
   vec4 projectedPosition = projectionMatrix * viewPosition;

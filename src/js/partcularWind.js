@@ -16,10 +16,10 @@ class ParticularWind {
   constructor({ scene, renderer, gui, params = {}, senseRotation = +1, speed = 0.65 }) {
     Object.assign(this, { scene, renderer, gui, senseRotation, speed })
 
-    this.count = 1948 * 2
+    this.count = 1948 * 3
     this.params = Object.assign(PARAMS, params)
 
-    this.initPlane()
+    // this.initPlane()
     this.initParticules()
   }
 
@@ -99,6 +99,7 @@ class ParticularWind {
     })
 
     this.mesh = new THREE.Points(particlesGeometry, particlesMaterial)
+    this.mesh.position.y += 0.5
     this.scene.add(this.mesh)
 
     this.initGUI()
