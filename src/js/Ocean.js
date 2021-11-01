@@ -7,7 +7,7 @@ const OPTIONS = {
   size: 2.5,
 }
 
-class ReflactorPlane {
+class Ocean {
   constructor({ scene, gui, options = OPTIONS }) {
     const waterGeometry = new THREE.PlaneGeometry(10000, 10000)
 
@@ -46,4 +46,4 @@ class ReflactorPlane {
   }
 }
 
-export default ReflactorPlane
+export default Ocean

@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 import ParticularWind from './partcularWind'
-import ReflactorPlane from './ReflactorPlane'
+import Ocean from './Ocean'
 import Island from './Island'
 
 class App {
@@ -75,7 +75,7 @@ class App {
   }
 
   initWater() {
-    this.water = new ReflactorPlane({
+    this.water = new Ocean({
       scene: this.scene,
       renderer: this.renderer,
       gui: this.gui,
