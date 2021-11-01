@@ -12,7 +12,6 @@ class Island {
     }
 
     this.init()
-    this.addLight()
   }
 
   init() {
@@ -31,11 +30,6 @@ class Island {
     this.mesh.rotation.x = -Math.PI * 0.5
 
     this.scene.add(this.mesh)
-  }
-
-  addLight() {
-    this.light = new THREE.PointLight('#2560b6', 0.5)
-    this.scene.add(this.light)
   }
 }
 
