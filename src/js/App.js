@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 import ParticularWind from './partcularWind'
 import ReflactorPlane from './ReflactorPlane'
+import Island from './Island'
 
 class App {
   constructor() {
@@ -25,7 +26,8 @@ class App {
 
     // this.initAxis()
     this.initParticules()
-    this.initPlane()
+    this.initWater()
+    this.initIsland()
 
     this.clock = new THREE.Clock()
     this.initEvents()
@@ -72,11 +74,17 @@ class App {
     })
   }
 
-  initPlane() {
-    this.plane = new ReflactorPlane({
+  initWater() {
+    this.water = new ReflactorPlane({
       scene: this.scene,
       renderer: this.renderer,
       gui: this.gui,
+    })
+  }
+
+  initIsland() {
+    this.island = new Island({
+      scene: this.scene,
     })
   }
 
@@ -115,7 +123,7 @@ class App {
     this.controls.update()
 
     this.particules.update(elapsedTime)
-    this.plane.update(elapsedTime)
+    this.water.update(elapsedTime)
 
     // Render
     this.renderer.render(this.scene, this.camera)
