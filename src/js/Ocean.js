@@ -1,6 +1,5 @@
-/* eslint-disable import/extensions */
 import * as THREE from 'three'
-import { Water } from 'three/examples/jsm/objects/Water.js'
+import { Water } from 'three/examples/jsm/objects/Water'
 
 const OPTIONS = {
   distortionScale: 1.3,
