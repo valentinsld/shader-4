@@ -1,13 +1,14 @@
+/* eslint-disable import/extensions */
 import * as THREE from 'three'
 import { Water } from 'three/examples/jsm/objects/Water.js'
 
 const OPTIONS = {
-  distortionScale: 0.5,
-  size: 0.5,
+  distortionScale: 1.3,
+  size: 2.5,
 }
 
 class ReflactorPlane {
-  constructor({ scene, renderer, gui, options = OPTIONS }) {
+  constructor({ scene, gui, options = OPTIONS }) {
     const waterGeometry = new THREE.PlaneGeometry(10000, 10000)
 
     this.water = new Water(
