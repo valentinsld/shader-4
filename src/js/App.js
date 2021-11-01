@@ -54,9 +54,12 @@ class App {
     this.controls = new OrbitControls(this.camera, this.canvas)
     if (this.debug) return
     this.controls.maxPolarAngle = Math.PI * 0.495
+    this.controls.minPolarAngle = Math.PI * 0.1
     this.controls.target.set(0, 0, 0)
     this.controls.minDistance = 3
     this.controls.maxDistance = 10
+    this.controls.enablePan = false
+    this.controls.enableDamping = true
     this.controls.update()
   }
 
