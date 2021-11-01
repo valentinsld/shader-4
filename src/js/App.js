@@ -5,11 +5,13 @@ import * as dat from 'dat.gui'
 import ParticularWind from './partcularWind'
 import Ocean from './Ocean'
 import Island from './Island'
+import MirrorIsland from './MirrorIsland'
 
 class App {
   constructor() {
     // Debug
     this.gui = new dat.GUI({ width: 340 })
+    this.debug = window.location.hash === '#DEBUG'
 
     // Canvas
     this.canvas = document.querySelector('canvas.webgl')
@@ -27,12 +29,16 @@ class App {
     // this.initAxis()
     this.initParticules()
     this.initWater()
-    this.initIsland()
+    // this.initIsland()
+    this.initMirrorIsland()
 
     this.clock = new THREE.Clock()
     this.initEvents()
   }
 
+  //
+  // Init World
+  //
   initScene() {
     this.scene = new THREE.Scene()
     this.scene.fog = new THREE.Fog('black', 0.1, 60)
@@ -46,6 +52,7 @@ class App {
 
     // Controls
     this.controls = new OrbitControls(this.camera, this.canvas)
+    if (this.debug) return
     this.controls.maxPolarAngle = Math.PI * 0.495
     this.controls.target.set(0, 0, 0)
     this.controls.minDistance = 3
@@ -66,6 +73,9 @@ class App {
     this.scene.add(axesHelper)
   }
 
+  //
+  // INIT MAP
+  //
   initParticules() {
     this.particules = new ParticularWind({
       scene: this.scene,
@@ -84,6 +94,12 @@ class App {
 
   initIsland() {
     this.island = new Island({
+      scene: this.scene,
+    })
+  }
+
+  initMirrorIsland() {
+    this.mirrorIsland = new MirrorIsland({
       scene: this.scene,
     })
   }
