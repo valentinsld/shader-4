@@ -16,8 +16,6 @@ vec3 blendOverlay( vec3 base, vec3 blend ) {
 }
 
 void main() {
-
   vec4 base = texture2DProj( tDiffuse, vUv );
   gl_FragColor = vec4( blendOverlay( base.rgb, color ), 1.0 );
-
 }

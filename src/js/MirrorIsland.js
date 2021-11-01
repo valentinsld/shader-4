@@ -7,7 +7,7 @@ import fragmentShader from '../shaders/mirrorIsland.frag'
 
 class MirrorIsland {
   constructor({ scene }) {
-    const geometry = new THREE.PlaneGeometry(5, 5)
+    const geometry = new THREE.PlaneGeometry(5, 5, 512, 512)
 
     const shader = {
       uniforms: {
