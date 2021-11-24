@@ -18,8 +18,8 @@ vec3 blendOverlay( vec3 base, vec3 blend ) {
 void main() {
   vec4 base = texture2DProj( tDiffuse, vUv  );
   gl_FragColor = vec4( base.rgb, 1.0 );
-  vec2 offs_blur = vec2(0.02);
-  // effet cool à 0.05
+  vec2 offs_blur = vec2(0.05);
+  // TODO effet cool à 0.05
 
 
   vec4 color = vec4(0.0);
