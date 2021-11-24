@@ -6,14 +6,19 @@ import vertexShader from '../shaders/mirrorIsland.vert'
 import fragmentShader from '../shaders/mirrorIsland.frag'
 
 class MirrorIsland {
-  constructor({ scene }) {
+  constructor({ scene, gui }) {
     const geometry = new THREE.PlaneGeometry(5, 5, 512, 512)
+
+    const params = {
+      color: '#626470',
+    }
 
     const shader = {
       uniforms: {
         color: {
           value: null,
         },
+        uColor: { value: new THREE.Color(params.color) },
         tDiffuse: {
           value: null,
         },
@@ -38,6 +43,12 @@ class MirrorIsland {
     verticalMirror.position.y = 0.1
     verticalMirror.rotateX(-Math.PI / 2)
     scene.add(verticalMirror)
+
+    console.log(gui)
+    gui.addColor(params, 'color').onChange((v) => {
+      console.log(verticalMirror)
+      verticalMirror.material.uniforms.uColor.value = new THREE.Color(v)
+    })
   }
 }
 

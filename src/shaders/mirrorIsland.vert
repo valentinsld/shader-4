@@ -89,7 +89,7 @@ void main() {
   float smoothCenter = smoothstep(0.3, 0.5, distanceCenter);
   float noise = getPerlinNoise3d(vec3(uv.xy * 12.0, 1.0)) + 1.0;
   float elevation = 1.0 - noise * smoothCenter;
-  gl_Position.y += elevation - 1.0;
+  gl_Position.y += elevation - 0.9;
 
   // varying
   vElevation = elevation;

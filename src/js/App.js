@@ -47,7 +47,7 @@ class App {
   initCamera() {
     // Base camera
     this.camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 100)
-    this.camera.position.set(2.9, 2, 2.9)
+    this.camera.position.set(5, 3, 2.9)
     this.scene.add(this.camera)
 
     // Controls
@@ -104,6 +104,7 @@ class App {
   initMirrorIsland() {
     this.mirrorIsland = new MirrorIsland({
       scene: this.scene,
+      gui: this.gui,
     })
   }
 

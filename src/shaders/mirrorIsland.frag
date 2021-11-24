@@ -1,7 +1,8 @@
-uniform vec3 color;
+uniform vec3 uColor;
 uniform sampler2D tDiffuse;
 
 varying vec4 vUv;
+varying float vElevation;
 
 float blendOverlay( float base, float blend ) {
 
@@ -36,5 +37,7 @@ void main() {
   color += texture2DProj(tDiffuse, vUv + vec4(         0.0, offs_blur.y, 0, 0)) * vec4(0.1250);   
   color += texture2DProj(tDiffuse, vUv + vec4( offs_blur.x, offs_blur.y, 0, 0)) * vec4(0.0625);  
 
-  gl_FragColor = vec4( color.rgb, 1.0 );
+  vec3 colorPlane = (vec3(1.0) - color.rgb) * mix(vec3(0.0, 0.0, 0.0), uColor, (vElevation - 0.5 * 1.4));
+
+  gl_FragColor = vec4( color.rgb + colorPlane.rgb, 1.0 );
 }
