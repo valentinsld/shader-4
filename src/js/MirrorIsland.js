@@ -44,9 +44,7 @@ class MirrorIsland {
     verticalMirror.rotateX(-Math.PI / 2)
     scene.add(verticalMirror)
 
-    console.log(gui)
     gui.addColor(params, 'color').onChange((v) => {
-      console.log(verticalMirror)
       verticalMirror.material.uniforms.uColor.value = new THREE.Color(v)
     })
   }
