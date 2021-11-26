@@ -28,7 +28,7 @@ class App {
 
     // this.initAxis()
     this.initParticules()
-    this.initWater()
+    // this.initWater()
     // this.initIsland()
     this.initMirrorIsland()
 
@@ -47,20 +47,11 @@ class App {
   initCamera() {
     // Base camera
     this.camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 100)
-    this.camera.position.set(2.9, 2, 2.9)
+    this.camera.position.set(0, 2, 0)
     this.scene.add(this.camera)
 
     // Controls
     this.controls = new OrbitControls(this.camera, this.canvas)
-    if (this.debug) return
-    this.controls.maxPolarAngle = Math.PI * 0.495
-    this.controls.minPolarAngle = Math.PI * 0.1
-    this.controls.target.set(0, 0, 0)
-    this.controls.minDistance = 3
-    this.controls.maxDistance = 10
-    this.controls.enablePan = false
-    this.controls.enableDamping = true
-    this.controls.update()
   }
 
   initRenderer() {
@@ -142,7 +133,6 @@ class App {
     this.controls.update()
 
     this.particules.update(elapsedTime)
-    this.water.update(elapsedTime)
 
     // Render
     this.renderer.render(this.scene, this.camera)

@@ -83,14 +83,4 @@ void main() {
 
   vUv = textureMatrix * vec4( position, 1.0 );
   gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-
-  // smooth
-  float distanceCenter = distance(uv, vec2(0.5));
-  float smoothCenter = smoothstep(0.3, 0.5, distanceCenter);
-  float noise = getPerlinNoise3d(vec3(uv.xy * 12.0, 1.0)) + 1.0;
-  float elevation = 1.0 - noise * smoothCenter;
-  gl_Position.y += elevation - 1.0;
-
-  // varying
-  vElevation = elevation;
 }

@@ -6,8 +6,8 @@ import fragmentShader from '../shaders/particule.frag'
 const PARAMS = {
   widthCircle: 0.6,
   sizeParticules: 42,
-  color1: '#32b3dc', // #dcb504
-  color2: '#2560b6', // #c8321f
+  color1: '#f5f5f5',
+  color2: '#9300fa',
   powerRandom: 3.5,
   radiusRandom: 0.2,
 }
@@ -19,19 +19,7 @@ class ParticularWind {
     this.count = 1948 * 3
     this.params = Object.assign(PARAMS, params)
 
-    // this.initPlane()
     this.initParticules()
-  }
-
-  initPlane() {
-    const geometry = new THREE.PlaneGeometry(4, 4)
-    const material = new THREE.MeshBasicMaterial({
-      color: 'grey',
-    })
-
-    this.plane = new THREE.Mesh(geometry, material)
-    this.plane.rotation.x = Math.PI / -2
-    this.scene.add(this.plane)
   }
 
   initParticules() {
