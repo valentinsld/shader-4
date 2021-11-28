@@ -4,12 +4,12 @@ import vertexShader from '../shaders/particule.vert'
 import fragmentShader from '../shaders/particule.frag'
 
 const PARAMS = {
-  widthCircle: 0.8,
-  sizeParticules: 42,
+  widthCircle: 1.02,
+  sizeParticules: 56,
   color1: '#f5f5f5',
-  color2: '#8618d4',
+  color2: '#940bff',
   powerRandom: 2.5,
-  radiusRandom: 0.1,
+  radiusRandom: 0.15,
 }
 
 class ParticularWind {

@@ -35,7 +35,6 @@ class App {
   //
   initScene() {
     this.scene = new THREE.Scene()
-    this.scene.fog = new THREE.Fog('black', 0.1, 60)
   }
 
   initCamera() {
@@ -43,6 +42,7 @@ class App {
     this.camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 100)
     this.camera.position.set(0, 2.77, 0)
     this.scene.add(this.camera)
+    // this.scene.background = new THREE.Color(0xff0000)
 
     // Controls
     this.controls = new OrbitControls(this.camera, this.canvas)
