@@ -3,8 +3,6 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 import ParticularWind from './partcularWind'
-import Ocean from './Ocean'
-import Island from './Island'
 import MirrorIsland from './MirrorIsland'
 
 class App {
@@ -27,9 +25,7 @@ class App {
     this.resize()
 
     // this.initAxis()
-    this.initParticules()
-    // this.initWater()
-    // this.initIsland()
+    // this.initParticules()
     this.initMirrorIsland()
 
     this.clock = new THREE.Clock()
@@ -78,23 +74,11 @@ class App {
     })
   }
 
-  initWater() {
-    this.water = new Ocean({
-      scene: this.scene,
-      renderer: this.renderer,
-      gui: this.gui,
-    })
-  }
-
-  initIsland() {
-    this.island = new Island({
-      scene: this.scene,
-    })
-  }
-
   initMirrorIsland() {
     this.mirrorIsland = new MirrorIsland({
       scene: this.scene,
+      renderer: this.renderer,
+      gui: this.gui,
     })
   }
 
@@ -132,7 +116,7 @@ class App {
     // Update controls
     this.controls.update()
 
-    this.particules.update(elapsedTime)
+    this.mirrorIsland.update(elapsedTime)
 
     // Render
     this.renderer.render(this.scene, this.camera)
