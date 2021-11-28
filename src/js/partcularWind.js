@@ -4,12 +4,12 @@ import vertexShader from '../shaders/particule.vert'
 import fragmentShader from '../shaders/particule.frag'
 
 const PARAMS = {
-  widthCircle: 0.6,
+  widthCircle: 0.8,
   sizeParticules: 42,
   color1: '#f5f5f5',
-  color2: '#9300fa',
-  powerRandom: 3.5,
-  radiusRandom: 0.2,
+  color2: '#8618d4',
+  powerRandom: 2.5,
+  radiusRandom: 0.1,
 }
 
 class ParticularWind {
@@ -87,7 +87,7 @@ class ParticularWind {
     })
 
     this.mesh = new THREE.Points(particlesGeometry, particlesMaterial)
-    this.mesh.position.y += 0.5
+    this.mesh.position.y += 2
     this.scene.add(this.mesh)
 
     this.initGUI()

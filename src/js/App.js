@@ -24,8 +24,6 @@ class App {
     this.initRenderer()
     this.resize()
 
-    // this.initAxis()
-    // this.initParticules()
     this.initMirrorIsland()
 
     this.clock = new THREE.Clock()
@@ -43,7 +41,7 @@ class App {
   initCamera() {
     // Base camera
     this.camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 100)
-    this.camera.position.set(0, 2, 0)
+    this.camera.position.set(0, 2.77, 0)
     this.scene.add(this.camera)
 
     // Controls
@@ -58,22 +56,9 @@ class App {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   }
 
-  initAxis() {
-    const axesHelper = new THREE.AxesHelper(5)
-    this.scene.add(axesHelper)
-  }
-
   //
   // INIT MAP
   //
-  initParticules() {
-    this.particules = new ParticularWind({
-      scene: this.scene,
-      renderer: this.renderer,
-      gui: this.gui,
-    })
-  }
-
   initMirrorIsland() {
     this.mirrorIsland = new MirrorIsland({
       scene: this.scene,
