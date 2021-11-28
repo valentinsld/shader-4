@@ -24,5 +24,5 @@ void main() {
   color += texture2DProj(tDiffuse, vUv + vec4(         0.0, offs_blur.y, 0, 0)) * vec4(0.1250);   
   color += texture2DProj(tDiffuse, vUv + vec4( offs_blur.x, offs_blur.y, 0, 0)) * vec4(0.0625);  
 
-  gl_FragColor = vec4( color.rgb, 1.0 );
+  gl_FragColor = vec4( vec3(0.10196078431372549, 0.09019607843137255, 0.1450980392156863) + color.rgb, 1.0 );
 }

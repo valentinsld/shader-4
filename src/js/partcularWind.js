@@ -4,19 +4,19 @@ import vertexShader from '../shaders/particule.vert'
 import fragmentShader from '../shaders/particule.frag'
 
 const PARAMS = {
-  widthCircle: 1.02,
-  sizeParticules: 56,
-  color1: '#f5f5f5',
-  color2: '#940bff',
-  powerRandom: 2.5,
-  radiusRandom: 0.15,
+  widthCircle: 3.02,
+  sizeParticules: 78,
+  color1: '#22eae0', // #f5f5f5
+  color2: '#e60efe', // #940bff
+  powerRandom: 1.5,
+  radiusRandom: 0.05,
 }
 
 class ParticularWind {
   constructor({ scene, renderer, gui, params = {}, senseRotation = +1, speed = 0.65 }) {
     Object.assign(this, { scene, renderer, gui, senseRotation, speed })
 
-    this.count = 1948 * 3
+    this.count = 1948 * 6
     this.params = Object.assign(PARAMS, params)
 
     this.initParticules()

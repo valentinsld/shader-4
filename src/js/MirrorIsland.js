@@ -14,7 +14,7 @@ class MirrorIsland {
     this.particules = new ParticularWind({ scene: this.renderScene, renderer, gui })
 
     // TODO : remove
-    scene.add(this.renderScene)
+    // scene.add(this.renderScene)
 
     const shader = {
       uniforms: {

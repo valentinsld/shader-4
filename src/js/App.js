@@ -2,7 +2,6 @@ import * as THREE from 'three'
 // eslint-disable-next-line import/extensions
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
-import ParticularWind from './partcularWind'
 import MirrorIsland from './MirrorIsland'
 
 class App {
@@ -40,9 +39,10 @@ class App {
   initCamera() {
     // Base camera
     this.camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 100)
-    this.camera.position.set(0, 2.77, 0)
+    this.camera.position.set(0, 4.6, 0)
     this.scene.add(this.camera)
-    // this.scene.background = new THREE.Color(0xff0000)
+    this.scene.background = new THREE.Color('#1a1725')
+    console.log(this.scene.background)
 
     // Controls
     this.controls = new OrbitControls(this.camera, this.canvas)

@@ -14,17 +14,8 @@ class Reflector extends THREE.Mesh {
     const color = options.color !== undefined ? new THREE.Color(options.color) : new THREE.Color(0x7F7F7F)
     const textureWidth = options.textureWidth || 512
     const textureHeight = options.textureHeight || 512
-    const clipBias = options.clipBias || 0
     const shader = options.shader || Reflector.ReflectorShader //
 
-    const reflectorPlane = new THREE.Plane()
-    const normal = new THREE.Vector3()
-    const reflectorWorldPosition = new THREE.Vector3()
-    const cameraWorldPosition = new THREE.Vector3()
-    const rotationMatrix = new THREE.Matrix4()
-    const clipPlane = new THREE.Vector4()
-    const view = new THREE.Vector3()
-    const q = new THREE.Vector4()
     const textureMatrix = new THREE.Matrix4()
     const virtualCamera = new THREE.PerspectiveCamera()
 
@@ -38,7 +29,6 @@ class Reflector extends THREE.Mesh {
       format: THREE.RGBFormat,
     }
     const renderTarget = new THREE.WebGLRenderTarget(textureWidth, textureHeight, parameters)
-    console.log(renderTarget)
 
     if (!THREE.MathUtils.isPowerOfTwo(textureWidth) || !THREE.MathUtils.isPowerOfTwo(textureHeight)) {
       renderTarget.texture.generateMipmaps = false
