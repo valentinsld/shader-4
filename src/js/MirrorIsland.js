@@ -8,13 +8,13 @@ import ParticularWind from './partcularWind'
 
 class MirrorIsland {
   constructor({ scene, renderer, gui }) {
-    const geometry = new THREE.PlaneGeometry(8, 8, 512, 512)
+    const geometry = new THREE.PlaneGeometry(5, 5, 512, 512)
 
     this.renderScene = new THREE.Scene()
     this.particules = new ParticularWind({ scene: this.renderScene, renderer, gui })
 
     // TODO : remove
-    scene.add(this.renderScene)
+    // scene.add(this.renderScene)
 
     const shader = {
       uniforms: {
