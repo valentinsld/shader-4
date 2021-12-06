@@ -42,7 +42,6 @@ class App {
     this.camera.position.set(0, 4.6, 0)
     this.scene.add(this.camera)
     this.scene.background = new THREE.Color('#1a1725')
-    console.log(this.scene.background)
 
     // Controls
     this.controls = new OrbitControls(this.camera, this.canvas)
