@@ -114,7 +114,7 @@ void main()
   modelPosition.xyz += snoise(vec4(modelPosition.xyz, uTime * 0.5)) * 0.2;
   // TODO : Ca rend bien ça
   // modelPosition.xz *= 1.0 - (aElevation + uTime / uLastElevation);
-  modelPosition.xz *= 1.0 - smoothstep(0.0, uLastElevation, uLastElevation - modelPosition.y) * 0.5;
+  modelPosition.xz *= 1.0 + smoothstep(uLastElevation * 0.8, uLastElevation, modelPosition.y);
 
   vec4 viewPosition = viewMatrix * modelPosition;
   vec4 projectedPosition = projectionMatrix * viewPosition;
